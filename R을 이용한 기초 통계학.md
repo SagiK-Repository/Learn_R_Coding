@@ -8,9 +8,9 @@ R을 활용한 기초통계학에 대해서 배운다.
 
 ### 목표
 
-- [ ] 1. R 입문
-- [ ] 2. R Studio
-- [ ] 3. 자료형과 연산자
+- [x] 1. R 입문
+- [x] 2. R Studio
+- [x] 3. 자료형과 연산자
 - [ ] 4. 변수
 - [ ] 5. 자료구조
 - [ ] 6. 자료의 입출력
@@ -584,19 +584,83 @@ x*y | 요소들의   곱 | x%*%y | x와 y의 내적
   > var1 <- "홍길동"; var1; var2 <- 1996019; var2
   [1] "홍길동"
   [1] 1996019
+  
   > var3 <- Sys.Date(); var3; var4 <- c("a","b","c"); var4
   [1] "2022-11-07"
   [1] "a" "b" "c"
+  
   > var3 -> var4 -> var5; var4; var5
   [1] "2022-11-07"
   [1] "2022-11-07"
+  
   > var6 <- var7 <- var3; var6; var7
   [1] "2022-11-07"
   [1] "2022-11-07"
+  
   > string1 <- '정보통신'; string1
   [1] "정보통신"
+  
   > comp <- c(1,"2"); comp # 숫자와 문자가 동시에 들어 있으면 문자로 변경됨
   [1] "1" "2"
+  ```
+
+<br><br>
+
+## 4.2 변수에 값 저장과 연산
+
+- 두 변수에 숫자형 데이터가 저장되어있으면 산술연산이 가능하다.
+- 함수 seq()와 rep()를 사용하여 편리하게 수열을 할당할 수 있다.
+  ```R
+  > num1 <- pi; num2<-exp(1)
+  
+  > num1 + num2; sum(pi+exp(1))
+  [1] 5.859874
+  [1] 5.859874
+  
+  > char1 <- "a"; char1
+  [1] "a"
+  
+  > num1 + char1 # 오류가 발생함
+  Error in num1 + char1 : non-numeric argument to binary operator
+  
+  > seq1 <- 1:7; seq1 # 1부터 7까지 1씩 증가하는 등차수열 저장
+  [1] 1 2 3 4 5 6 7
+  
+  > rep1 <- rep(2,7); rep1 # 2를 7회 반복
+  [1] 2 2 2 2 2 2 2
+  
+  > seq1 + rep1
+  [1] 3 4 5 6 7 8 9
+  
+  > seq2 <- "a":"k"; seq2 # 문자는 연속적으로 할당이 불가능
+  Error in "a":"k" : NA/NaN argument
+  In addition: Warning messages:
+  1: NAs introduced by coercion 
+  2: NAs introduced by coercion 
+  ```
+
+<br><br>
+
+## 4.3 변수 확인과 제거
+
+- 함수 objects()를 사용하면 생성한 변수들을 확인할 수 있다.
+- 함수 rm(“변수명”)으로 변수들을 지운다.
+  ```R
+  > objects(); objects(all.names=T)
+  [1] "char1" "num1"  "num2"  "rep1"  "seq1" 
+  [1] ".Random.seed" "char1"        "num1"         "num2"        
+  [5] "rep1"         "seq1"        
+  
+  > rm(date3); objects()
+  Warning message:
+  In rm(date3) : object 'date3' not found
+  [1] "char1" "num1"  "num2"  "rep1"  "seq1" 
+  
+  > rm(list=ls()) # 모든 변수를 제거함
+  
+  > ls(); objects() # 두 함수 모두 변수들을 나열함
+  character(0)
+  character(0)
   ```
 
 
@@ -604,6 +668,9 @@ x*y | 요소들의   곱 | x%*%y | x와 y의 내적
 
 
 #  5. 자료구조
+
+## 5.1 일반 벡터(Vector)
+
 
 
 <br><br><br>
